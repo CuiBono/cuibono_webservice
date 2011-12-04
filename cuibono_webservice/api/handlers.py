@@ -8,7 +8,7 @@ from cuibono.models import Ad
 
 class AdHandler(BaseHandler):
     allowed_methods = ('GET', 'PUT', 'DELETE')
-    fields = ('title','transcript',('tags', ('value','type')))
+    fields = ('title','transcript',('tags', ('value','type')), ('articles', ('title','source','url')))
     exclude = ('id', re.compile(r'^private_'))
     model = Ad
 
@@ -18,10 +18,10 @@ class AdHandler(BaseHandler):
 
     def read(self, request, the_hash):
         try:
-	    ad = Ad.objects.get(audio_hash=the_hash)
+            ad = Ad.objects.get(audio_hash=the_hash)
             return ad
-	except ObjectDoesNotExist:
-	    return 0
+        except ObjectDoesNotExist:
+            return 0
 
     @throttle(5, 10*60)
     def update(self, request, the_hash):

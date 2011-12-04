@@ -3,10 +3,14 @@ from django import forms
 
 class TagType(models.Model):
     name = models.CharField(max_length=200)
+    def __unicode__(self):
+        return self.name
 
 class Tag(models.Model):
     value = models.CharField(max_length=200)
     type = models.ForeignKey(TagType)
+    def __unicode__(self):
+        return self.value
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
@@ -18,12 +22,13 @@ class Article(models.Model):
         return self.title
 
 class Quotation(models.Model):
+    segment = models.CharField(max_length=500)
     article = models.ForeignKey('Article')
     
 class Ad(models.Model):
     title = models.CharField(max_length=200)
     transcript = models.CharField(max_length=500, blank=True)
-    tag = models.ManyToManyField(Tag, blank=True)
+    tags = models.ManyToManyField(Tag, blank=True)
     audio_hash = models.CharField(max_length=5000)
     articles = models.ManyToManyField(Article, blank=True)
     def __unicode__(self):
