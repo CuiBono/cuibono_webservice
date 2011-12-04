@@ -1,0 +1,1 @@
+The cuibono_webservice is a Django backend for the cuibono mobile application, allowing users to identify political ads based on their audio and receive information relevant to that ad in return.
