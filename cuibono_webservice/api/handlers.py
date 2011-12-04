@@ -6,7 +6,7 @@ try:
     import json
 except ImportError:
     import simplejson as json
-sys.path.insert(0,"/home/blannon/echonest-server/API")
+sys.path.insert(0,"~/echonest-server/API")
 import fp
 
 from piston.handler import BaseHandler
