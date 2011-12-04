@@ -114,6 +114,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'cuibono',
     'django.contrib.admin',
+    'piston'
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
