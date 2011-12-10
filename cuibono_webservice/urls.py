@@ -9,10 +9,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'cuibono_webservice.views.home', name='home'),
-    # url(r'^cuibono_webservice/', include('cuibono_webservice.foo.urls')),
+    url(r'^api/', include('cuibono_webservice.api.urls')),
     
-    #url(r'^api/ad/(?P<the_hash>[^/]+)/$', ad_resource), -- Where is ad_resource?
     
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
