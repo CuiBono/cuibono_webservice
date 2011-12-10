@@ -38,8 +38,8 @@ class AdHandler(BaseHandler):
 
     def read(self, request, the_hash):
         try:
-            ad = Ad.objects.get(audio_hash=lookup(the_hash))
-            return ad
+            ad = Ad.objects.get(audio_hash=self.lookup(the_hash))
+            return {'ad' : ad }
         except ObjectDoesNotExist:
             return None
 
