@@ -5,12 +5,18 @@ class TagType(models.Model):
     name = models.CharField(max_length=200)
     def __unicode__(self):
         return self.name
+       
+    class Admin:
+        pass
 
 class Tag(models.Model):
     value = models.CharField(max_length=200)
     type = models.ForeignKey(TagType)
     def __unicode__(self):
         return self.value
+        
+    class Admin:
+        pass
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
@@ -20,11 +26,17 @@ class Article(models.Model):
     url = models.CharField(max_length=500)
     def __unicode__(self):
         return self.title
+        
+    class Admin:
+        pass
 
 class Quotation(models.Model):
     segment = models.CharField(max_length=500)
     article = models.ForeignKey('Article')
-    
+
+    class Admin:
+        pass
+            
 class Ad(models.Model):
     title = models.CharField(max_length=200)
     transcript = models.CharField(max_length=500, blank=True)
@@ -33,3 +45,6 @@ class Ad(models.Model):
     articles = models.ManyToManyField(Article, blank=True)
     def __unicode__(self):
         return self.title
+        
+    class Admin:
+        pass
