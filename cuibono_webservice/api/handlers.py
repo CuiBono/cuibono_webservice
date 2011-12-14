@@ -6,7 +6,11 @@ try:
     import json
 except ImportError:
     import simplejson as json
-import fp
+
+from echoprint_server_api import fp
+# this should work from anywhere, just make sure that the solr connection pool
+# is at localhost:8502/solr/fp and that the tokyo tyrant address is at
+# localhost:1978
 
 from piston.handler import BaseHandler
 from piston.utils import rc, throttle
