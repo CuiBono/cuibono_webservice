@@ -6,7 +6,7 @@ try:
     import json
 except ImportError:
     import simplejson as json
-#import fp
+import fp
 
 from piston.handler import BaseHandler
 from piston.utils import rc, throttle
@@ -26,20 +26,26 @@ class AdHandler(BaseHandler):
 
     def lookup(self,the_hash):
         return the_hash
- #       if len(the_hash):
- #           decoded = fp.decode_code_string(the_hash)
- #           result = fp.best_match_for_query(decoded)
- #           if result.TRID:
- #               return result.TRID
- #           else:
- #               return 0
- #       else:
- #           return 0
+        if len(the_hash):
+            decoded = fp.decode_code_string(the_hash)
+            result = fp.best_match_for_query(decoded)
+            if result.TRID:
+                return result.TRID
+            else:
+                return 0
+        else:
+            return 0
 
     def read(self, request, the_hash):
         try:
             ad = Ad.objects.get(audio_hash=lookup(the_hash))
-            return ad
+            out = json.dumps([{ \
+                            "title"      : ad.title, \
+                            "transcript" : ad.transcript, \
+                            "tags"       : [tag.name for tag in ad.tags], \
+                            "articles"   : [a.url for a in ad.articles] \
+                         }])
+            return out
         except ObjectDoesNotExist:
             return None
 
