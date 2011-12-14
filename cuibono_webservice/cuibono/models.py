@@ -1,7 +1,8 @@
 from django.db import models
 from django import forms
 
-class TagType(models.Model):
+#class TagType(models.Model):
+class Tag(models.Model):
     name = models.CharField(max_length=200)
     def __unicode__(self):
         return self.name
@@ -9,14 +10,14 @@ class TagType(models.Model):
     class Admin:
         pass
 
-class Tag(models.Model):
-    value = models.CharField(max_length=200)
-    type = models.ForeignKey(TagType)
-    def __unicode__(self):
-        return self.value
-        
-    class Admin:
-        pass
+#class Tag(models.Model):
+#    value = models.CharField(max_length=200)
+#    type = models.ForeignKey(TagType)
+#    def __unicode__(self):
+#        return self.value
+#        
+#    class Admin:
+#        pass
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
