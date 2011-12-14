@@ -42,7 +42,7 @@ class AdHandler(BaseHandler):
 
     def read(self, request, the_hash):
         try:
-            ad = Ad.objects.get(audio_hash=lookup(the_hash))
+            ad = Ad.objects.get(audio_hash=self.lookup(the_hash))
             out = json.dumps([{ \
                             "title"      : ad.title, \
                             "transcript" : ad.transcript, \
