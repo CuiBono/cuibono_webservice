@@ -52,7 +52,7 @@ class AdHandler(BaseHandler):
                          }])
             return out
         except ObjectDoesNotExist:
-            return None
+            return '<br />'.join(["the lookup didn't work.","codegen hash query was:",str(the_hash)])
 
     #@throttle(5, 10*60)
     def update(self, request, the_hash):
