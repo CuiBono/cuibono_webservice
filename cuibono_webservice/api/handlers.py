@@ -29,7 +29,8 @@ class AdHandler(BaseHandler):
         return len(ad.content)
 
     def lookup(self,the_hash):
-        return the_hash
+        #THIS WAS JUST FOR TESTING
+        # return the_hash  
         if len(the_hash):
             decoded = fp.decode_code_string(the_hash)
             result = fp.best_match_for_query(decoded)
