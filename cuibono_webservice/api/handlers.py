@@ -47,8 +47,11 @@ class AdHandler(BaseHandler):
             out = json.dumps([{ \
                             "title"      : ad.title, \
                             "transcript" : ad.transcript, \
-                            "tags"       : [tag.name for tag in ad.tags], \
-                            "articles"   : [a.url for a in ad.articles] \
+                            ## COMMENTING THESE OUT FOR NOW.  APPARENTLY THE
+                            ## ManyRelatedManager object is not iterable?  uh?
+                            #
+                            #"tags"       : [tag.name for tag in ad.tags], \
+                            #"articles"   : [a.url for a in ad.articles] \
                          }])
             return out
         except ObjectDoesNotExist:
