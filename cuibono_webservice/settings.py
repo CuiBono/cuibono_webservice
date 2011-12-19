@@ -6,6 +6,7 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = (
       ('Bob Lannon', 'blannon@gmail.com' ),
       ('Pam Selle', 'pamela.selle@gmail.com'),
+      ('Jim Snavely', 'ludflu@gmail.com'),
       ('Jake Richter', 'jprichter@gmail.com')
 )
 
@@ -14,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'cuibono.db',                      # Or path to database file if using sqlite3.
+        'NAME': '/var/www/cuibono_webservice/cuibono.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
