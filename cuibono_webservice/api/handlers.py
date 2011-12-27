@@ -47,12 +47,8 @@ class AdHandler(BaseHandler):
             out = { \
                       "title"      : ad.title, \
                       "transcript" : ad.transcript, \
-                      ## COMMENTING THESE OUT FOR NOW.  APPARENTLY THE
-                      ## ManyRelatedManager object is not iterable?  uh?
-                      #
-                      #"tags"       : [tag.name for tag in ad.tags], \
-                      #"articles"   : [a.url for a in ad.articles] \
-                      "articles"   : ad.articles
+                      "articles"   : ad.articles.all() \
+                      "funder" : "Crossroads GPS"
                   }
             return out
         except ObjectDoesNotExist:
