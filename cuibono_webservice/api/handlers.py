@@ -20,7 +20,7 @@ from cuibono.models import Ad
 
 class AdHandler(BaseHandler):
     allowed_methods = ('GET', 'PUT', 'DELETE')
-    fields = ('title','transcript',('tags', ('value','type')), ('articles', ('title','source','url')))
+    fields = ('title','transcript',('tags', ('name',)), ('articles', ('title','source','url')))
     exclude = ('id', re.compile(r'^private_'))
     model = Ad
 
@@ -44,15 +44,16 @@ class AdHandler(BaseHandler):
     def read(self, request, the_hash):
         try:
             ad = Ad.objects.get(audio_hash=self.lookup(the_hash))
-            out = json.dumps([{ \
-                            "title"      : ad.title, \
-                            "transcript" : ad.transcript, \
-                            ## COMMENTING THESE OUT FOR NOW.  APPARENTLY THE
-                            ## ManyRelatedManager object is not iterable?  uh?
-                            #
-                            #"tags"       : [tag.name for tag in ad.tags], \
-                            #"articles"   : [a.url for a in ad.articles] \
-                         }])
+            out = { \
+                      "title"      : ad.title, \
+                      "transcript" : ad.transcript, \
+                      ## COMMENTING THESE OUT FOR NOW.  APPARENTLY THE
+                      ## ManyRelatedManager object is not iterable?  uh?
+                      #
+                      #"tags"       : [tag.name for tag in ad.tags], \
+                      #"articles"   : [a.url for a in ad.articles] \
+                      "articles"   : ad.articles
+                  }
             return out
         except ObjectDoesNotExist:
             return '<br />'.join(["the lookup didn't work.","codegen hash query was:",str(the_hash)])

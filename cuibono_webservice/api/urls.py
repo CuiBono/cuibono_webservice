@@ -12,6 +12,6 @@ ad_resource = Resource(handler=AdHandler)
 
 urlpatterns = patterns('',
     
-    url(r'^ad/(?P<the_hash>[^/]+)/$', ad_resource), # Where is ad_resource?
+    url(r'^ad/(?P<the_hash>[^/]+)/$', ad_resource, { 'emitter_format': 'json' }), # Where is ad_resource?
     
 )
