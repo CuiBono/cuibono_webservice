@@ -44,10 +44,11 @@ class AdHandler(BaseHandler):
     def read(self, request, the_hash):
         try:
             ad = Ad.objects.get(audio_hash=self.lookup(the_hash))
+            articles = [(a.title,a.source,a.url) for a in ad.articles.all()]
             out = { \
                       "title"      : ad.title, \
                       "transcript" : ad.transcript, \
-                      "articles"   : ad.articles.all(), \
+                      "articles"   : articles, \
                       "funder" : "Crossroads GPS" \
                   }
             return out
