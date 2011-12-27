@@ -45,7 +45,8 @@ class AdHandler(BaseHandler):
         try:
             ad = Ad.objects.get(audio_hash=self.lookup(the_hash))
             articles = {}
-            for title,source,url in ad.articles.all():
+            article_data = [(a.title,a.source,a.url) for a in ad.articles.all()]
+            for title,source,url in article_data:
                 articles[title] = {"source": source, "url": url}
             out = { \
                       "title"      : ad.title, \
