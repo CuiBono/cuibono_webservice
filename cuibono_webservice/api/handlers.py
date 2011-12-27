@@ -52,7 +52,9 @@ class AdHandler(BaseHandler):
                       "title"      : ad.title, \
                       "transcript" : ad.transcript, \
                       "articles"   : articles, \
-                      "funder" : "Crossroads GPS" \
+                      #hard coding the next two so we can test jimbo's app
+                      "funder" : "Crossroads GPS", \
+                      "url" : "http://factcheck.org/2011/11/the-fall-tv-seasons-senate-air-wars/" \
                   }
             return out
         except ObjectDoesNotExist:
