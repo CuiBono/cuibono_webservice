@@ -48,7 +48,7 @@ class AdHandler(BaseHandler):
                       "title"      : ad.title, \
                       "transcript" : ad.transcript, \
                       "articles"   : ad.articles.all() \
-                      "funder" : "Crossroads GPS"
+                      "funder" : "Crossroads GPS" \
                   }
             return out
         except ObjectDoesNotExist:
