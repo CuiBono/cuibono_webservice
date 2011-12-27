@@ -58,7 +58,11 @@ class AdHandler(BaseHandler):
                   }
             return out
         except ObjectDoesNotExist:
-            return '<br />'.join(["the lookup didn't work.","codegen hash query was:",str(the_hash)])
+            return {  "title" : "None Found", \
+                      "transcript" : "N/A", \
+                      "funder" : "N/A", \
+                      "url" : "N/A" \
+                   }
 
     #@throttle(5, 10*60)
     def update(self, request, the_hash):
