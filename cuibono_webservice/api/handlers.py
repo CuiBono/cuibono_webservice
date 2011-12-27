@@ -47,7 +47,7 @@ class AdHandler(BaseHandler):
             out = { \
                       "title"      : ad.title, \
                       "transcript" : ad.transcript, \
-                      "articles"   : ad.articles.all() \
+                      "articles"   : ad.articles.all(), \
                       "funder" : "Crossroads GPS" \
                   }
             return out
