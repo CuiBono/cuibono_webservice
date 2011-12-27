@@ -51,7 +51,7 @@ class AdHandler(BaseHandler):
             out = { \
                       "title"      : ad.title, \
                       "transcript" : ad.transcript, \
-                      "articles"   : articles, \
+                      #"articles"   : articles, \
                       #hard coding the next two so we can test jimbo's app
                       "funder" : "Crossroads GPS", \
                       "url" : "http://factcheck.org/2011/11/the-fall-tv-seasons-senate-air-wars/" \
