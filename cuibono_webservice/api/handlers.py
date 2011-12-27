@@ -20,7 +20,7 @@ from cuibono.models import Ad
 
 class AdHandler(BaseHandler):
     allowed_methods = ('GET', 'PUT', 'DELETE')
-    fields = ('title','transcript',('tags', ('name',)), ('articles', ('title','source','url')))
+    fields = ('title','transcript','funder',('tags', ('name',)), ('articles', ('title','source','url')))
     exclude = ('id', re.compile(r'^private_'))
     model = Ad
 
