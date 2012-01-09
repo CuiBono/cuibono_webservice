@@ -3,9 +3,13 @@
 				<title>Submit an ad</title>
 		</head>
 		<body>
-				{% if form.errors %}
+				{% if errors %}
 				<p style="color: red;">
-				Please corrrect the error{{ forms.errors|pluralize }} below.
+				<ul>
+						{% for error in errors %}
+						<li> {{ error }} </li>
+						{% endfor %}
+				</ul>
 				</p>
 				{% endif %}
 
