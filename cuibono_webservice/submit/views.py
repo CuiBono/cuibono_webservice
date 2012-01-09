@@ -20,7 +20,7 @@ def submit_ad(request):
             return HttpResponseRedirect('/thanks/')
         else:
             for k,v in form.errors.items():
-                errors.append('%s: %s' % k,v)
+                errors.append('%s: %s' % (k,v))
             form = SubmitAdForm()
         return render_to_response('submit_ad.html', 
                                   {'form': form,
