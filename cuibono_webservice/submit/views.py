@@ -51,7 +51,7 @@ def handle_uploaded_ad(f,post):
     destination.close()
     ad = Ad(title = post['ad_title'], \
             transcript = post['ad_transcript'], \
-            funders.add(post['funder'], \
+            funders.add(post['funder']), \
             media_file_name = newfile) # OOPS, doesn't exist yet!
     for t in post['ad_tags'].replace(',',' ').replace('  ',' ').split(' '):
         ad.tags.add(Tag(name=t))
