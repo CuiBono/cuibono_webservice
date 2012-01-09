@@ -44,6 +44,8 @@ class Funder(models.Model):
     class Admin:
         pass
 
+class AdMedia(models.Model):
+    media = models.FileField(upload_to='ad_media')
 
 class Ad(models.Model):
     title = models.CharField(max_length=200)
@@ -52,7 +54,7 @@ class Ad(models.Model):
     audio_hash = models.CharField(max_length=5000)
     articles = models.ManyToManyField(Article, blank=True)
     funders = models.ManyToManyField(Funder)
-    media_file_name = models.FilePathField(blank=True)
+    media_file = models.ManyToManyField(AdMedia,blank=True)
     def __unicode__(self):
         return self.title
         
