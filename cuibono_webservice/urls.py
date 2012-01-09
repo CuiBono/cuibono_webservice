@@ -8,13 +8,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    url(r'^api/', include('cuibono_webservice.api.urls')),
-    
-    
-    # Uncomment the admin/doc line below to enable admin documentation:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+                       url(r'^api/', include('cuibono_webservice.api.urls')),
+                       url(r'^submit/',include('cuibono_webservice.submit.urls')),
+                       # Uncomment the admin/doc line below to enable admin documentation:
+                       url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+                       # Uncomment the next line to enable the admin:
+                       url(r'^admin/', include(admin.site.urls)),
+                      )
 
-    # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
-)

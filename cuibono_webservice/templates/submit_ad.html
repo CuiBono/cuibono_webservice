@@ -1,0 +1,22 @@
+<html>
+		<head>
+				<title>Submit an ad</title>
+		</head>
+		<body>
+				{% if form.errors %}
+				<p style="color: red;">
+				Please corrrect the error{{ forms.errors|pluralize }} below.
+				</p>
+				{% endif %}
+
+				<form action="" method="post">
+						{% csrf_token %}
+						<table>
+								{{ form.as_table}}
+						</table>
+						<input type="submit" value="Submit">
+				</form>
+		</body>
+</html>
+
+

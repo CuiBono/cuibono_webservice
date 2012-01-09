@@ -37,13 +37,22 @@ class Quotation(models.Model):
 
     class Admin:
         pass
-            
+
+class Funder(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Admin:
+        pass
+
+
 class Ad(models.Model):
     title = models.CharField(max_length=200)
     transcript = models.CharField(max_length=500, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     audio_hash = models.CharField(max_length=5000)
     articles = models.ManyToManyField(Article, blank=True)
+    funders = models.ManyToManyField(Funder)
+    media_file_name = models.FilePathField(blank=True)
     def __unicode__(self):
         return self.title
         
