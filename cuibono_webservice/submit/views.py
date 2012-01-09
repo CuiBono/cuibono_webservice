@@ -19,7 +19,7 @@ def submit_ad(request):
             handle_uploaded_ad(request.FILES['ad_file'],request.POST)
             return HttpResponseRedirect('/thanks/')
         else:
-            for k,v in form.errors:
+            for k,v in dict(form.errors):
                 errors.append('%s: %s' % k,v)
             form = SubmitAdForm()
         return render_to_response('submit_ad.html', 
