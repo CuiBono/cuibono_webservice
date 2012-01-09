@@ -4,7 +4,7 @@ from django.template import RequestContext
 
 from submit.forms import SubmitAdForm
 from cuibono.models import Ad,Article,Tag,Funder
-from cuibono.api import fp
+from api import fp
 
 import pyechonest.song as song
 
