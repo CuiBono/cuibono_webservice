@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<head>
+			<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+				<title>CuiBono</title>
+				<meta name="keywords" content="" />
+				<meta name="description" content="" />
+				<link href="{{ STATIC_URL }}default.css" rel="stylesheet" type="text/css" />
+		</head>
+		
+	<body>
+		<div id="header">
+			<h1>CuiBono </h1>
+			<h2>- The Political Ad Truth Detector</h2>
+			</div>
+		
+		<div id="menu">
+			<ul>
+				<li><a href="#">Welcome</a></li>
+				<li><a href="/about/">About</a></li>
+				<li><a href="/submit/">Submit</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			{% block content %}{% endblock %}
+		</div>	
+		<div id="footer">
+			<p>Copyright &copy; 2006 Sitename.com. Designed by <a href="http://www.freecsstemplates.org" class="link1">Free CSS Templates</a></p>
+		</div>
+	</body>
+</html>
+
