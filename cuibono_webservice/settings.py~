@@ -1,6 +1,4 @@
 # Django settings for cuibono_webservice project.
-import os.path
-
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -9,13 +7,8 @@ ADMINS = (
       ('Bob Lannon', 'blannon@gmail.com' ),
       ('Jim Snavely','ludflu@gmail.com'),
       ('Pam Selle', 'pamela.selle@gmail.com'),
-<<<<<<< Updated upstream
-      ('Jim Snavely', 'ludflu@gmail.com'),
-      ('Jake Richter', 'jprichter@gmail.com')
-=======
       ('Erika Owens', 'eaopmk@gmail.com'),
       ('Jake Richter', 'jprichter@gmail.com'),
->>>>>>> Stashed changes
 )
 
 MANAGERS = ADMINS
@@ -23,7 +16,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(os.path.dirname(__file__),'cuibono.db'),                      # Or path to database file if using sqlite3.
+        'NAME': 'cuibono.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -56,7 +49,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/var/www/cuibono_webservice/media/'
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -117,13 +110,9 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-<<<<<<< Updated upstream
-    os.path.join(os.path.dirname(__file__),'templates'),
-=======
     
     # CHANGE THIS!
     #'/home/username/Cuibono/cuibono_webservice/cuibono_webservice/templates',
->>>>>>> Stashed changes
 )
 
 INSTALLED_APPS = (
