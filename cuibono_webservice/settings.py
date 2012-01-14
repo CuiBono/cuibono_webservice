@@ -9,13 +9,8 @@ ADMINS = (
       ('Bob Lannon', 'blannon@gmail.com' ),
       ('Jim Snavely','ludflu@gmail.com'),
       ('Pam Selle', 'pamela.selle@gmail.com'),
-<<<<<<< Updated upstream
-      ('Jim Snavely', 'ludflu@gmail.com'),
-      ('Jake Richter', 'jprichter@gmail.com')
-=======
       ('Erika Owens', 'eaopmk@gmail.com'),
       ('Jake Richter', 'jprichter@gmail.com'),
->>>>>>> Stashed changes
 )
 
 MANAGERS = ADMINS
@@ -117,10 +112,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-<<<<<<< Updated upstream
     os.path.join(os.path.dirname(__file__),'templates'),
-=======
-    
     # CHANGE THIS!
     #'/home/username/Cuibono/cuibono_webservice/cuibono_webservice/templates',
 >>>>>>> Stashed changes
