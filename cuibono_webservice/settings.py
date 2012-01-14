@@ -1,13 +1,16 @@
 # Django settings for cuibono_webservice project.
+import os.path
+
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
       ('Bob Lannon', 'blannon@gmail.com' ),
+      ('Jim Snavely','ludflu@gmail.com'),
       ('Pam Selle', 'pamela.selle@gmail.com'),
-      ('Jim Snavely', 'ludflu@gmail.com'),
-      ('Jake Richter', 'jprichter@gmail.com')
+      ('Erika Owens', 'eaopmk@gmail.com'),
+      ('Jake Richter', 'jprichter@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -15,7 +18,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/var/www/cuibono_webservice/cuibono.db',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(os.path.dirname(__file__),'cuibono.db'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -30,7 +33,7 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/New_York'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -48,7 +51,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/var/www/cuibono_webservice/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -109,6 +112,9 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    # os.path.join(os.path.dirname(__file__),'templates'),
+    # CHANGE THIS!
+    #'/home/username/Cuibono/cuibono_webservice/cuibono_webservice/templates',
 )
 
 INSTALLED_APPS = (
@@ -120,6 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'cuibono_webservice.cuibono',
+    'cuibono_webservice',
     # Uncomment the next line to enable the admin:
     # Uncomment the next line to enable admin documentation:
      'django.contrib.admindocs',
