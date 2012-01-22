@@ -7,10 +7,9 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
       ('Bob Lannon', 'blannon@gmail.com' ),
-      ('Jim Snavely','ludflu@gmail.com'),
       ('Pam Selle', 'pamela.selle@gmail.com'),
-      ('Erika Owens', 'eaopmk@gmail.com'),
-      ('Jake Richter', 'jprichter@gmail.com'),
+      ('Jim Snavely', 'ludflu@gmail.com'),
+      ('Jake Richter', 'jprichter@gmail.com')
 )
 
 MANAGERS = ADMINS
@@ -33,7 +32,7 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/New_York'
+TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -51,7 +50,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/var/www/cuibono_webservice/media/'
+MEDIA_ROOT = '/home/rlannon/Dropbox/dev/cuibono_webservice/cuibono_webservice/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -113,9 +112,6 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(os.path.dirname(__file__),'templates'),
-    # CHANGE THIS!
-    #'/home/username/Cuibono/cuibono_webservice/cuibono_webservice/templates',
->>>>>>> Stashed changes
 )
 
 INSTALLED_APPS = (
@@ -127,7 +123,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'cuibono_webservice.cuibono',
-    'cuibono_webservice',
+    'cuibono_webservice.submit',
+    'cuibono_webservice.filetransfers',
     # Uncomment the next line to enable the admin:
     # Uncomment the next line to enable admin documentation:
      'django.contrib.admindocs',
@@ -155,3 +152,7 @@ LOGGING = {
         },
     }
 }
+
+PUBLIC_PREPARE_UPLOAD_BACKEND = 'filetransfers.backends.default.prepare_upload'
+SERVE_FILE_BACKEND = 'filetransfers.backends.default.serve_file'
+PUBLIC_DOWNLOAD_URL_BACKEND = 'filetransfers.backends.default.public_download_url'

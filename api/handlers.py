@@ -43,18 +43,17 @@ class AdHandler(BaseHandler):
 
     def read(self, request, the_hash):
         try:
-            ad = Ad.objects.get(audio_hash=self.lookup(the_hash))
+            ad = Ad.objects.get(pk=self.lookup(the_hash))
             articles = {}
             article_data = [(a.title,a.source,a.url) for a in ad.articles.all()]
             for title,source,url in article_data:
                 articles[title] = {"source": source, "url": url}
+            top_article = ad.articles.all()[0]
             out = { \
                       "title"      : ad.title, \
                       "transcript" : ad.transcript, \
-                      #"articles"   : articles, \
-                      #hard coding the next two so we can test jimbo's app
-                      "funder" : "Crossroads GPS", \
-                      "url" : "http://factcheck.org/2011/11/the-fall-tv-seasons-senate-air-wars/" \
+                      "funder" : ad.funder, \
+                      "url" : top_article.url\
                   }
             return out
         except ObjectDoesNotExist:

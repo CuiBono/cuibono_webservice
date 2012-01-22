@@ -1,24 +1,15 @@
 <html>
 		<head>
-				<title>Submit an ad</title>
+				<title>Submit an ad, godammit</title>
 		</head>
 		<body>
-				{% if errors %}
-				<p style="color: red;">
-				<ul>
-						{% for error in errors %}
-						<li> {{ error }} </li>
-						{% endfor %}
-				</ul>
-				</p>
-				{% endif %}
+				{% load filetransfers %}
 
-				<form action="" method="post">
+				<form action="{{ upload_url }}" method="POST" enctype="multipart/form-data">
 						{% csrf_token %}
-						<table>
-								{{ form.as_table}}
-						</table>
-						<input type="submit" value="Submit">
+						{% render_upload_data upload_data %}
+						<table>{{ form }}</table>
+						<input type="submit" value="Upload" />
 				</form>
 		</body>
 </html>
