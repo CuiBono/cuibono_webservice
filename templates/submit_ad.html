@@ -1,17 +1,19 @@
-<html>
-		<head>
-				<title>Submit an ad, godammit</title>
-		</head>
-		<body>
-				{% load filetransfers %}
+{% extends "base.html" %}
+{% block content %}
 
-				<form action="{{ upload_url }}" method="POST" enctype="multipart/form-data">
-						{% csrf_token %}
-						{% render_upload_data upload_data %}
-						<table>{{ form }}</table>
-						<input type="submit" value="Upload" />
-				</form>
-		</body>
-</html>
+        <div id="content">
 
+                <h1> Submit an Ad </h1>
+                <h2>  </h2>
+		<p>
+		{% load filetransfers %}
+                <form action="{{ upload_url }}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% render_upload_data upload_data %}
+                
+		<table>{{ form }}</table>
+                <input type="submit" value="Upload" />
+                
+  	</div>
 
+{% endblock %}

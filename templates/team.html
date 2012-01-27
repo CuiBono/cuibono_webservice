@@ -1,28 +1,20 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
 
-<html lang="en">
-	<head>
-		<head>
-			<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-				<title>CuiBono: Team</title>
-				<meta name="keywords" content="" />
-				<meta name="description" content="" />
-				<link href="{{ STATIC_URL }}default.css" rel="stylesheet" type="text/css" />
-		</head>
-		
-	<body>
-		<div id="header">
-			<h1>CuiBono </h1>
-			<h2>Team</h2>
-			</div>
-		
-<p>A team that gathered at Random Hacks of Kindness has continued to work on this project. Team members include: </p>
-		<div id="content">
-			{% block content %}{% endblock %}
-		</div>	
-		<div id="footer">
-			<p>Copyright &copy; 2006 Sitename.com. Designed by <a href="http://www.freecsstemplates.org" class="link1">Free CSS Templates</a></p>
-		</div>
-	</body>
-</html>
+        <div id="content">
 
+                <h1> Cuibono </h1>
+                <h2> To whose benefit? </h2>
+		                
+         	<p>A team that gathered at Random Hacks of Kindness has continued to work on this project. 
+		Team members include: </p>
+
+		<strong><a href="https://plus.google.com/104529297658810068493/about"> Jim Snavely </a> </strong>
+		"Jim Snavely lives in Philadelphia where he writes software for the
+		web and mobile devices. When he's not compulsively writing code,
+		he amuses himself by getting in over his head in math, science and
+		history, and then patiently explaining these topics to his dog, who
+		listens dutifully."
+        </div>
+
+{% endblock %}
