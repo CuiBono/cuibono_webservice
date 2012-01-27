@@ -7,9 +7,16 @@ class WelcomeView(TemplateView):
 class AboutView(TemplateView):
     template_name = 'about.html'
     
-#Not sure about this one... There is probably a better generic view to use here.
-class SubmitView(TemplateView):
-    template_name = 'submit.html'
 
+class TeamView(TemplateView):
+    template_name = 'team.html'
 	
+class PartnersView(TemplateView):
+    template_name = 'partners.html'
 	
+class NewsView(TemplateView):
+    template_name = 'news.html'
+
+class ContactView(TemplateView):
+    template_name = 'contact.html'
+

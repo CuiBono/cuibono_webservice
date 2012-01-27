@@ -104,6 +104,13 @@ a:hover {
 	width: 250px;
 }
 
+/** CLEAR FOOTER */
+
+.clearfooter {
+height: 330px;
+clear: both;
+}
+
 /** FOOTER */
 
 #footer {
@@ -114,7 +121,7 @@ a:hover {
 }
 
 #footer p {
-	position: absolute;
+	position: relative;
 	bottom:0;
 	border-top: 1px solid #CCCCCC;
 	text-align: center;

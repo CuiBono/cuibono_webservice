@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^submit/',include('cuibono_webservice.submit.urls')),
     (r'^$', WelcomeView.as_view()),
     (r'^about/', AboutView.as_view()),
-    # This is for the submit landing page. 
-    #(r'^submit/', SubmitView.as_view()),
+    (r'^team/', TeamView.as_view()),
+    (r'^partners/', PartnersView.as_view()),
+    (r'^news/', NewsView.as_view()),
+    (r'^contact/', ContactView.as_view()),
 )
