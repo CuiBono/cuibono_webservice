@@ -1,8 +1,6 @@
-/** BASIC */
+/** CuiBono CSS **/
 
 body {
-	margin: 0px;
-	padding: 0px;
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	color: #777777;
 }
@@ -11,6 +9,9 @@ h1, h2, h3, h4, h5, h6 {
 	text-transform: lowercase;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	/*font-style: italic; */
+	font-size: 2em;
+	margin: 0.67em 0;
+	font-weight: bold; 
 	color: #446EC0;
 }
 
@@ -23,12 +24,15 @@ a:hover {
 	color: #446EC0;
 }
 
+.page {
+	width: 778px;
+	margin: 0 auto;
+}
+
 /** HEADER */
 
 #header {
-	width: 778px;
-	margin: 0px auto;
-	padding: 20px 0px;
+	padding: 20px 0;
 }
 
 #header h1 {
@@ -48,18 +52,13 @@ a:hover {
 /** MENU */
 
 #menu {
-	width: 778px;
-	margin: -40px auto 20px auto;
-	padding: 1px 0px 0px 0px;
 	border-bottom: 1px solid #CCCCCC;
 	
 }
 
 #menu ul {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
 	text-align: right;
+	margin-bottom: 2px;
 }
 
 #menu li {
@@ -83,8 +82,6 @@ a:hover {
 /** CONTENT */
 
 #content {
-	width: 778px;
-	margin: 0px auto;
 }
 
 #content h2 {
@@ -92,6 +89,10 @@ a:hover {
 	font-style: normal;
 	font-size: 1.2em;
 	border-bottom: 2px dotted #CCCCCC;
+}
+
+#content p {
+	padding: 1em 0;
 }
 
 #left {
@@ -104,25 +105,16 @@ a:hover {
 	width: 250px;
 }
 
-/** CLEAR FOOTER */
-
-.clearfooter {
-height: 330px;
-clear: both;
-}
-
 /** FOOTER */
 
 #footer {
-	clear: both;
-	width: 778px;
-	margin: 0px auto;
-	padding: 20px 0px;
+	position: absolute;
+	bottom:0;
+	width: inherit;
 }
 
 #footer p {
-	position: relative;
-	bottom:0;
+	padding-top: 1em;
 	border-top: 1px solid #CCCCCC;
 	text-align: center;
 	font-size: small;
