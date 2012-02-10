@@ -115,9 +115,8 @@ a:hover {
 /** FOOTER */
 
 #footer {
-	position: absolute;
-	bottom:0;
 	width: inherit;
+	margin-top: 100px;
 }
 
 #footer p {
