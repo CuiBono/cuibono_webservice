@@ -1,7 +1,7 @@
 import sqlite3
 import sys
 
-cb_home = '/home/rlannon/Dropbox/dev/cuibono_webservice/'
+cb_home = '/var/www/cuibono_webservice/'
 
 out = open('fingerprint_queue.txt','a')
 
