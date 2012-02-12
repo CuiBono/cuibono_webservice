@@ -8,12 +8,14 @@ except:
 
 cb_home = '/var/www/cuibono_webservice/'
 
-sys.path.insert(0, "../echoprint_server_api")
+sys.path.insert(0, "./echoprint_server_api")
 import fp
 
 def find_ad_id(filename):
-    media_home = cb_home+'/media/'
-    filename = filename.replace(cb_home,'')
+    media_home = cb_home+'media/'
+    filename = filename.replace(media_home,'')
+    print media_home
+    print filename
     con = sqlite3.connect(cb_home+'cuibono.db')
     cur = con.cursor()
     cur.execute("select id from cuibono_ad where file = '%s'" % filename)
@@ -48,6 +50,6 @@ def parse_json_dump(jfile):
 if __name__ == "__main__":
     jfile = sys.argv[1]
     fullcodes = parse_json_dump(jfile)
-    fp.ingest(codes, do_commit=False)
+    fp.ingest(fullcodes, do_commit=False)
     fp.commit()
 

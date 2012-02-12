@@ -10,7 +10,7 @@ cur = con.cursor()
 cur.execute('select file from cuibono_ad where ingested = 0')
 results = cur.fetchall()
 for result in results:
-    out.write(cb_home+result[0])
+    out.write(cb_home+'media/'+result[0])
     out.write('\n')
 
 out.close()
