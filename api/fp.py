@@ -231,7 +231,8 @@ def best_match_for_query(code_string, elbow=10, local=False):
             #        top_track_id, top_score, original_scores[top_track_id]/2)
         trid = top_track_id.split("-")[0]
         meta = metadata_for_track_id(trid, local=local)
-        return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trid, score=top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+#        return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trid, score=top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+        return Response(Response.SINGLE_GOOD_MATCH, TRID=trid, score=top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
         #    else:
         #        logger.info("top_score NOT > original_scores[%s]/2 (%d <= %d) BAD_HISTOGRAM_MATCH",
         #            top_track_id, top_score, original_scores[top_track_id]/2)
