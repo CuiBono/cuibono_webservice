@@ -53,7 +53,7 @@ class AdHandler(BaseHandler):
             out = { \
                       "title"      : ad.title, \
                       "transcript" : ad.transcript, \
-                      "funder" : top_funder \
+                      "funder" : top_funder, \
                       "url" : top_article.url\
                   }
             return out
