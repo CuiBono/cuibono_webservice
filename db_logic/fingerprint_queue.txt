@@ -1,1 +1,5 @@
 /var/www/cuibono_webservice/media/ad_media/2012/02/12/17/19/03/Crossroads_GPS_22Bacon22_NE.mp3
+/var/www/cuibono_webservice/media/ad_media/2012/02/12/18/22/20/Crossroads_GPS_22Foundation22_MA.mp3
+/var/www/cuibono_webservice/media/ad_media/2012/02/12/18/24/57/Crossroads_GPS_Applause.mp3
+/var/www/cuibono_webservice/media/ad_media/2012/02/12/19/28/06/Crossroads_GPS_22Dirt22_MT.mp3
+/var/www/cuibono_webservice/media/ad_media/2012/02/12/19/31/15/Tell_Senator_Brown_Stop_Voting_with_Big_Oil.mp3
