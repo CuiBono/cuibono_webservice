@@ -257,7 +257,9 @@ def best_match_for_query(code_string, elbow=10, local=False):
     if True: 
             # CUIBONO: THIS IS HURTING OUR RESULTS.
             #(actual_score_top_score - actual_score_2nd_score) >= (actual_score_top_score / 2):  # for examples [10,4], 10-4 = 6, which >= 5, so OK
-        return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trackid, score=actual_score_top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+        #return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trackid, score=actual_score_top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+        return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid,
+                        score=actual_score_top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
             #else:
             #    return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
         #else:
