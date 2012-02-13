@@ -49,10 +49,11 @@ class AdHandler(BaseHandler):
             for title,source,url in article_data:
                 articles[title] = {"source": source, "url": url}
             top_article = ad.articles.all()[0]
+            top_funder = str(ad.funders.all()[0])
             out = { \
                       "title"      : ad.title, \
                       "transcript" : ad.transcript, \
-                      "funder" : ad.funder, \
+                      "funder" : top_funder \
                       "url" : top_article.url\
                   }
             return out
