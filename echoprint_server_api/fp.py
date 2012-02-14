@@ -210,13 +210,15 @@ def best_match_for_query(code_string, elbow=10, local=False):
     sorted_actual_scores = sorted(actual_scores.iteritems(), key=lambda (k,v): (v,k), reverse=True)
     
     # Because we split songs up into multiple parts, sometimes the results will have the same track in the
-    # first few results. Remove these duplicates so that the falloff is (potentially) higher.
-    new_sorted_actual_scores = []
-    existing_trids = []
+    # first few results. Remove these duplicates so that the falloff is
+    # (potentially) higher.
+    new_sorted_actual_scores = sorted_actual_scores
+    #new_sorted_actual_scores = []
+    #existing_trids = []
     for trid, result in sorted_actual_scores:
         trid_split = trid.split("-")[0]
         if trid_split not in existing_trids:
-            new_sorted_actual_scores.append((trid, result))
+            #new_sorted_actual_scores.append((trid, result))
             existing_trids.append(trid_split)
     
     # We might have reduced the length of the list to 1
