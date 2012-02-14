@@ -180,7 +180,8 @@ def best_match_for_query(code_string, elbow=10, local=False):
             #return Response(Response.SINGLE_BAD_MATCH, qtime=response.header["QTime"], tic=tic)
 
     # If the scores are really low (less than 10% of the query length) then say no results
-    if top_match_score < code_len * 0.1:
+    # CUIBONO: edited this to 1% of query length
+    if top_match_score < code_len * 0.01:
         return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
 
     # Not a strong match, so we look up the codes in the keystore and compute actual matches...
