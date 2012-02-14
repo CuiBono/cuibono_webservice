@@ -171,10 +171,13 @@ def best_match_for_query(code_string, elbow=10, local=False):
         trackid = response.results[0]["track_id"]
         trackid = trackid.split("-")[0] # will work even if no `-` in trid
         meta = metadata_for_track_id(trackid, local=local)
-        if code_len - top_match_score < elbow:
-            return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
-        else:
-            return Response(Response.SINGLE_BAD_MATCH, qtime=response.header["QTime"], tic=tic)
+        #CUIBONO: added
+        return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+        #/CUIBONO
+        #if code_len - top_match_score < elbow:
+            #return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+        #else:
+            #return Response(Response.SINGLE_BAD_MATCH, qtime=response.header["QTime"], tic=tic)
 
     # If the scores are really low (less than 10% of the query length) then say no results
     if top_match_score < code_len * 0.1:
@@ -221,7 +224,7 @@ def best_match_for_query(code_string, elbow=10, local=False):
     if len(new_sorted_actual_scores) == 1:
         logger.info("only have 1 score result...")
         (top_track_id, top_score) = new_sorted_actual_scores[0]
-        if top_score < code_len * 0.1:
+        if top_score < code_len * 0.01:
             logger.info("only result less than 10%% of the query string (%d < %d *0.1 (%d)) SINGLE_BAD_MATCH", top_score, code_len, code_len*0.1)
             return Response(Response.SINGLE_BAD_MATCH, qtime = response.header["QTime"], tic=tic)
         else:
@@ -246,7 +249,7 @@ def best_match_for_query(code_string, elbow=10, local=False):
     trackid = actual_score_top_track_id.split("-")[0]
     meta = metadata_for_track_id(trackid, local=local)
     
-    if actual_score_top_score < code_len * 0.1:
+    if actual_score_top_score < code_len * 0.01:
         return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
     else:
         # If the actual score went down it still could be close enough, so check for that
