@@ -225,7 +225,8 @@ def best_match_for_query(code_string, elbow=10, local=False):
     if len(new_sorted_actual_scores) == 1:
         logger.info("only have 1 score result...")
         (top_track_id, top_score) = new_sorted_actual_scores[0]
-        if top_score < code_len * 0.01:
+        # CUIBONO: edited this to be .1%
+        if top_score < code_len * 0.001:
             logger.info("only result less than 10%% of the query string (%d < %d *0.1 (%d)) SINGLE_BAD_MATCH", top_score, code_len, code_len*0.1)
             return Response(Response.SINGLE_BAD_MATCH, qtime = response.header["QTime"], tic=tic)
         else:
@@ -250,7 +251,8 @@ def best_match_for_query(code_string, elbow=10, local=False):
     trackid = actual_score_top_track_id.split("-")[0]
     meta = metadata_for_track_id(trackid, local=local)
     
-    if actual_score_top_score < code_len * 0.01:
+    # CUIBONO: edited this to be .1%
+    if actual_score_top_score < code_len * 0.001:
         return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
     else:
         # If the actual score went down it still could be close enough, so check for that
