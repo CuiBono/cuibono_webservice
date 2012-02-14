@@ -171,15 +171,15 @@ def best_match_for_query(code_string, elbow=10, local=False):
         trackid = response.results[0]["track_id"]
         trackid = trackid.split("-")[0] # will work even if no `-` in trid
         meta = metadata_for_track_id(trackid, local=local)
-        #if code_len - top_match_score < elbow:
-        return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
-        #else:
-        #    return Response(Response.SINGLE_BAD_MATCH, qtime=response.header["QTime"], tic=tic)
+        if code_len - top_match_score < elbow:
+            return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+        else:
+            return Response(Response.SINGLE_BAD_MATCH, qtime=response.header["QTime"], tic=tic)
 
     # If the scores are really low (less than 10% of the query length) then say no results
     # CUIBONO: GETTING RID OF THIS
-    #if top_match_score < code_len * 0.1:
-    #    return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
+    if top_match_score < code_len * 0.1:
+        return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
 
     # Not a strong match, so we look up the codes in the keystore and compute actual matches...
 
@@ -222,13 +222,13 @@ def best_match_for_query(code_string, elbow=10, local=False):
     if len(new_sorted_actual_scores) == 1:
         logger.info("only have 1 score result...")
         (top_track_id, top_score) = new_sorted_actual_scores[0]
-        #if top_score < code_len * 0.1:
-            #logger.info("only result less than 10%% of the query string (%d < %d *0.1 (%d)) SINGLE_BAD_MATCH", top_score, code_len, code_len*0.1)
-            #return Response(Response.SINGLE_BAD_MATCH, qtime = response.header["QTime"], tic=tic)
-        #else:
-            #if top_score > (original_scores[top_track_id] / 2): 
-            #    logger.info("top_score > original_scores[%s]/2 (%d > %d) GOOD_MATCH_DECREASED",
-            #        top_track_id, top_score, original_scores[top_track_id]/2)
+        if top_score < code_len * 0.1:
+            logger.info("only result less than 10%% of the query string (%d < %d *0.1 (%d)) SINGLE_BAD_MATCH", top_score, code_len, code_len*0.1)
+            return Response(Response.SINGLE_BAD_MATCH, qtime = response.header["QTime"], tic=tic)
+        else:
+            if top_score > (original_scores[top_track_id] / 2): 
+                logger.info("top_score > original_scores[%s]/2 (%d > %d) GOOD_MATCH_DECREASED",
+                    top_track_id, top_score, original_scores[top_track_id]/2)
         trid = top_track_id.split("-")[0]
         meta = metadata_for_track_id(trid, local=local)
 #        return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trid, score=top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
@@ -248,12 +248,11 @@ def best_match_for_query(code_string, elbow=10, local=False):
     trackid = actual_score_top_track_id.split("-")[0]
     meta = metadata_for_track_id(trackid, local=local)
     
-    # CUIBONO: taking this out
-    #if actual_score_top_score < code_len * 0.1:
-    #    return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
-    #else:
+    if actual_score_top_score < code_len * 0.1:
+        return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
+    else:
         # If the actual score went down it still could be close enough, so check for that
-    #    if actual_score_top_score > (original_scores[actual_score_top_track_id] / 2): 
+        if actual_score_top_score > (original_scores[actual_score_top_track_id] / 2): 
     if True: 
             # CUIBONO: THIS IS HURTING OUR RESULTS.
             #(actual_score_top_score - actual_score_2nd_score) >= (actual_score_top_score / 2):  # for examples [10,4], 10-4 = 6, which >= 5, so OK
