@@ -171,10 +171,11 @@ def best_match_for_query(code_string, elbow=10, local=False):
         trackid = response.results[0]["track_id"]
         trackid = trackid.split("-")[0] # will work even if no `-` in trid
         meta = metadata_for_track_id(trackid, local=local)
-        if code_len - top_match_score < elbow:
-            return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
-        else:
-            return Response(Response.SINGLE_BAD_MATCH, qtime=response.header["QTime"], tic=tic)
+        return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+        #if code_len - top_match_score < elbow:
+            #return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+        #else:
+            #return Response(Response.SINGLE_BAD_MATCH, qtime=response.header["QTime"], tic=tic)
 
     # If the scores are really low (less than 10% of the query length) then say no results
     # CUIBONO: GETTING RID OF THIS
