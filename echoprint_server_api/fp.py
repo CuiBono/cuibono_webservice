@@ -171,16 +171,14 @@ def best_match_for_query(code_string, elbow=10, local=False):
         trackid = response.results[0]["track_id"]
         trackid = trackid.split("-")[0] # will work even if no `-` in trid
         meta = metadata_for_track_id(trackid, local=local)
-        return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
-        #if code_len - top_match_score < elbow:
-            #return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
-        #else:
-            #return Response(Response.SINGLE_BAD_MATCH, qtime=response.header["QTime"], tic=tic)
+        if code_len - top_match_score < elbow:
+            return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid, score=top_match_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+        else:
+            return Response(Response.SINGLE_BAD_MATCH, qtime=response.header["QTime"], tic=tic)
 
     # If the scores are really low (less than 10% of the query length) then say no results
-    # CUIBONO: GETTING RID OF THIS
-    #if top_match_score < code_len * 0.1:
-        #return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
+    if top_match_score < code_len * 0.1:
+        return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
 
     # Not a strong match, so we look up the codes in the keystore and compute actual matches...
 
@@ -210,10 +208,8 @@ def best_match_for_query(code_string, elbow=10, local=False):
     sorted_actual_scores = sorted(actual_scores.iteritems(), key=lambda (k,v): (v,k), reverse=True)
     
     # Because we split songs up into multiple parts, sometimes the results will have the same track in the
-    # first few results. Remove these duplicates so that the falloff is
-    # (potentially) higher.
+    # first few results. Remove these duplicates so that the falloff is (potentially) higher.
     new_sorted_actual_scores = sorted_actual_scores
-    #new_sorted_actual_scores = []
     existing_trids = []
     for trid, result in sorted_actual_scores:
         trid_split = trid.split("-")[0]
@@ -232,14 +228,13 @@ def best_match_for_query(code_string, elbow=10, local=False):
             if top_score > (original_scores[top_track_id] / 2): 
                 logger.info("top_score > original_scores[%s]/2 (%d > %d) GOOD_MATCH_DECREASED",
                     top_track_id, top_score, original_scores[top_track_id]/2)
-        trid = top_track_id.split("-")[0]
-        meta = metadata_for_track_id(trid, local=local)
-#        return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trid, score=top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
-        return Response(Response.SINGLE_GOOD_MATCH, TRID=trid, score=top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
-        #    else:
-        #        logger.info("top_score NOT > original_scores[%s]/2 (%d <= %d) BAD_HISTOGRAM_MATCH",
-        #            top_track_id, top_score, original_scores[top_track_id]/2)
-        #        return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime=response.header["QTime"], tic=tic)
+                trid = top_track_id.split("-")[0]
+                meta = metadata_for_track_id(trid, local=local)
+                return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trid, score=top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+            else:
+                logger.info("top_score NOT > original_scores[%s]/2 (%d <= %d) BAD_HISTOGRAM_MATCH",
+                    top_track_id, top_score, original_scores[top_track_id]/2)
+                return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime=response.header["QTime"], tic=tic)
         
     sorted_actual_scores = new_sorted_actual_scores    
 
@@ -256,7 +251,6 @@ def best_match_for_query(code_string, elbow=10, local=False):
     else:
         # If the actual score went down it still could be close enough, so check for that
         if actual_score_top_score > (original_scores[actual_score_top_track_id] / 2): 
-            # CUIBONO: THIS IS HURTING OUR RESULTS.
             if (actual_score_top_score - actual_score_2nd_score) >= (actual_score_top_score / 2):  # for examples [10,4], 10-4 = 6, which >= 5, so OK
                 return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trackid, score=actual_score_top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
             else:
