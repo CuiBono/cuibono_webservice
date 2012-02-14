@@ -22,4 +22,6 @@ urlpatterns = patterns('',
     (r'^partners/', PartnersView.as_view()),
     (r'^news/', NewsView.as_view()),
     (r'^contact/', ContactView.as_view()),
+    (r'^login/$', 'django.contrib.auth.views.login'),
+    (r'^logout/$', logout_page),
 )

@@ -13,7 +13,10 @@
 	<body>
 		<div class="page">
 			<div id="header">
-				<h1>WhoPaid </h1>
+					{% if user.is_authenticated %}
+					<div style="float:right">Signed in as {{ user.username }} (<a href="/logout/">logout</a>)</div>
+					{% endif %}
+					<h1>WhoPaid </h1>
 				<br><br>
 			</div>
 		

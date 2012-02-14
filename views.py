@@ -1,5 +1,7 @@
 from django.shortcuts import render_to_response
 from django.views.generic import TemplateView
+from django.contrib.auth import logout
+from django.http import HttpResponseRedirect
 
 class WelcomeView(TemplateView):
 	template_name = 'welcome.html'
@@ -20,3 +22,9 @@ class NewsView(TemplateView):
 class ContactView(TemplateView):
     template_name = 'contact.html'
 
+def logout_page(request):
+    """
+    Log users out and re-direct them to the main page.
+    """
+    logout(request)
+    return HttpResponseRedirect('/')

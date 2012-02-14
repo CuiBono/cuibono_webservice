@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.generic.simple import direct_to_template
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 
 from submit.forms import SubmitAdForm
 from cuibono.models import Ad,Article,Funder#,Tag
@@ -62,7 +63,7 @@ def solr_ingest(newfile,pk):
 #    ad.save()
 #    solr_ingest(newfile,ad.pk)
 
-
+@login_required
 def upload_handler(request):
     view_url = reverse('submit.views.upload_handler')
     if request.method == 'POST':
