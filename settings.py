@@ -1,6 +1,7 @@
 # Django settings for cuibono_webservice project.
 import os.path
 
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -18,7 +19,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/var/www/cuibono_webservice/cuibono.db',                      # Or path to database file if using sqlite3.
+        'NAME': os.path.join(SITE_ROOT,'cuibono.db'),                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -51,7 +52,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/var/www/cuibono_webservice/media/'
+MEDIA_ROOT = os.path.join(SITE_ROOT,'media/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -78,7 +79,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/var/www/cuibono_webservice/static/'
+    os.path.join(SITE_ROOT,'static/'),
 )
 
 # List of finder classes that know how to find static files in
@@ -100,9 +101,9 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -113,7 +114,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/var/www/cuibono_webservice/templates',
+    os.path.join(SITE_ROOT,'templates'),
 )
 
 INSTALLED_APPS = (
@@ -158,3 +159,5 @@ LOGGING = {
 PUBLIC_PREPARE_UPLOAD_BACKEND = 'filetransfers.backends.default.prepare_upload'
 SERVE_FILE_BACKEND = 'filetransfers.backends.default.serve_file'
 PUBLIC_DOWNLOAD_URL_BACKEND = 'filetransfers.backends.default.public_download_url'
+
+LOGIN_URL = '/login/'
