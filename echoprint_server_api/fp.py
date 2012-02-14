@@ -214,7 +214,7 @@ def best_match_for_query(code_string, elbow=10, local=False):
     # (potentially) higher.
     new_sorted_actual_scores = sorted_actual_scores
     #new_sorted_actual_scores = []
-    #existing_trids = []
+    existing_trids = []
     for trid, result in sorted_actual_scores:
         trid_split = trid.split("-")[0]
         if trid_split not in existing_trids:
