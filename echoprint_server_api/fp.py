@@ -251,22 +251,19 @@ def best_match_for_query(code_string, elbow=10, local=False):
     trackid = actual_score_top_track_id.split("-")[0]
     meta = metadata_for_track_id(trackid, local=local)
     
-    #if actual_score_top_score < code_len * 0.1:
-        #return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
-    #else:
+    if actual_score_top_score < code_len * 0.1:
+        return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
+    else:
         # If the actual score went down it still could be close enough, so check for that
-        #if actual_score_top_score > (original_scores[actual_score_top_track_id] / 2): 
-    if True: 
+        if actual_score_top_score > (original_scores[actual_score_top_track_id] / 2): 
             # CUIBONO: THIS IS HURTING OUR RESULTS.
-            #(actual_score_top_score - actual_score_2nd_score) >= (actual_score_top_score / 2):  # for examples [10,4], 10-4 = 6, which >= 5, so OK
-        #return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trackid, score=actual_score_top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
-        return Response(Response.SINGLE_GOOD_MATCH, TRID=trackid,
-                        score=actual_score_top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
-            #else:
-            #    return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
-        #else:
+            if (actual_score_top_score - actual_score_2nd_score) >= (actual_score_top_score / 2):  # for examples [10,4], 10-4 = 6, which >= 5, so OK
+                return Response(Response.MULTIPLE_GOOD_MATCH_HISTOGRAM_DECREASED, TRID=trackid, score=actual_score_top_score, qtime=response.header["QTime"], tic=tic, metadata=meta)
+            else:
+                return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime = response.header["QTime"], tic=tic)
+        else:
             # If the actual score was not close enough, then no match.
-            #return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime=response.header["QTime"], tic=tic)
+            return Response(Response.MULTIPLE_BAD_HISTOGRAM_MATCH, qtime=response.header["QTime"], tic=tic)
 
 def actual_matches(code_string_query, code_string_match, slop = 2, elbow = 10):
     code_query = code_string_query.split(" ")
