@@ -47,6 +47,6 @@ table {
 	border-spacing: 0;
 }
 
-em {
+p em {
 	font-style: italic;
 }
