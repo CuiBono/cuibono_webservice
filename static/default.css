@@ -102,6 +102,10 @@ a:hover {
 	padding: 1em 0;
 }
 
+#content p em {
+	font-style: italic;	
+}
+
 #content .button_space {
 	margin-bottom: 2em;
 }
