@@ -1,7 +1,7 @@
 import os
 import sys
 
-#added just to test hook trick
+#added just to test hook trick (attempt #2)
 
 sys.path.append('/var/www/')
 #sys.path.append('/var/www/cuibono_webservice/')
