@@ -31,12 +31,12 @@ class Article(models.Model):
     class Admin:
         pass
 
-#class Quotation(models.Model):
-#    segment = models.CharField(max_length=500)
-#    article = models.ForeignKey('Article')
-#
-#    class Admin:
-#        pass
+class Quotation(models.Model):
+    segment = models.CharField(max_length=500)
+    article = models.ForeignKey('Article')
+
+    class Admin:
+        pass
 
 class Funder(models.Model):
     name = models.CharField(max_length=100)
