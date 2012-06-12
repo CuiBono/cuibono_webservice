@@ -1,31 +1,13 @@
 # Django settings for cuibono_webservice project.
 import os.path
+from local_settings import *
 
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-ADMINS = (
-      ('Bob Lannon', 'blannon@gmail.com' ),
-      ('Pam Selle', 'pamela.selle@gmail.com'),
-      ('Jim Snavely', 'ludflu@gmail.com'),
-      ('Erika Owens', 'eaopmk@gmail.com'),
-      ('Jake Richter', 'jprichter@gmail.com')
-)
-
 MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'django_db',                      # Or path to database file if using sqlite3.
-        'USER': 'django_login',                      # Not used with sqlite3.
-        'PASSWORD': '122cuibono!SQL',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -89,9 +71,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '0luf+!p@!&lhm_xi2%b^t=4o%q%9sqv30vpow2q+$5xau+0iwe'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
